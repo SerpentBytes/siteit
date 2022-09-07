@@ -1,0 +1,20 @@
+{
+  "name": "siteit",
+  "version": "1.0.0",
+  "description": "CLI tool that converts user entered data via terminal into static website",
+  "main": "index.js",
+  "bin": {
+    "siteit" : "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "SSG"
+  ],
+  "author": "Taimoor Dawami",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.0.1"
+  }
+}
