@@ -4,7 +4,7 @@
   "description": "CLI tool that converts user entered data via terminal into static website",
   "main": "index.js",
   "bin": {
-    "siteit" : "./index.js"
+    "siteit": "./index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,6 +15,6 @@
   "author": "Taimoor Dawami",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^5.0.1"
+    "chalk": "^4.1.2"
   }
 }
