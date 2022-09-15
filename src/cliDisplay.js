@@ -11,4 +11,6 @@ const hdg = (value) => colorize('h', value)
 
 const err = (value) => colorize('err', value)
 
-module.exports = { cmd, flag, src, hdg, err }
+const success = (value) => colorize('success', value)
+
+module.exports = { cmd, flag, src, hdg, err, success }
