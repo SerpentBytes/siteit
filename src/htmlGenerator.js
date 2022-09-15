@@ -1,19 +1,20 @@
 
 const fs = require('fs')
 const path = require('path')
+const { success, err } = require('./cliDisplay')
 
 
 const addPTag = (content) => {
     let returnStr = ""
     returnStr += content.replace(/[\n]{2,}/g, "</p>\n\n<p>")
-    console.log(returnStr.toString())
+    //console.log(returnStr.toString())
     return returnStr
 
 }
 const generateHTML = (...args) => {
 
     let content = addPTag(args[1])
-    let fileNameWithHTMLExt = args[0].replace('.txt', '.html')
+    let fileNameWithHTMLExt = path.basename(args[0]).replace('.txt', '.html')
        
     let markup = `<html lang="en">
         <head>
@@ -25,9 +26,15 @@ const generateHTML = (...args) => {
             <p>${content}</p>
         </body>
          </html>`
-        
-         fs.writeFileSync(path.join(__dirname, `../dist/${fileNameWithHTMLExt}`), markup)
-         console.log(`--- ${fileNameWithHTMLExt} generated in dist directory ---`)
+
+        try{
+            fs.writeFileSync(path.join(__dirname, `../dist/${fileNameWithHTMLExt.split('/')}`), markup)
+            console.log(success(`--- ${fileNameWithHTMLExt} generated in dist directory ---`))
+        }catch(e){
+            console.log(fileNameWithHTMLExt)
+            console.error(err(`-- ERROR writing to output file ${fileNameWithHTMLExt}`))
+        }
+         
 }
 
 
