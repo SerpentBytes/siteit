@@ -13,7 +13,7 @@ Siteit allows users to convert text files into `.html` page. Presently, Siteit o
 
 | Command | Option/Flag | Additional Argument(s) | Description |
 | :---: | :---: | :---: | :---: |
-| siteit | **-v** or **--version** | n/a | Displays tools name and version information|
+| siteit | **-v** or **--version** | n/a | Displays tool name and version information|
 | siteit | **-h** or **--help** | n/a | Display usage manual|
 | siteit | **-i** or **--input** | _./filename.txt_ | Converts the content of the file supplied as additional argument into an `.html` document. To locate the generated file, `cd` into application's `dist` directory|
 | siteit | **-i** or **--input** | _./directory_| **_Yet to be implemented_** |
