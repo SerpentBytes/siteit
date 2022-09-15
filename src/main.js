@@ -1,4 +1,4 @@
-const { dispatch, handleImproperUsage } = require('./utlility')
+const { dispatch, handleImproperUsage } = require('./utility')
 
 module.exports.main = (args) => {
    if(args.length === 3 && (args[2] === "-v" || args[2] === "--version")){
