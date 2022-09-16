@@ -1,7 +1,7 @@
 # Siteit
 
 ## About
-Siteit allows users to convert text files into `.html` page. Presently, Siteit only supports input files with `.txt` format. 
+Siteit allows users to convert text files into `.html` pages. Presently, Siteit only supports input files with `.txt` format. 
 
 ## Installation
 
