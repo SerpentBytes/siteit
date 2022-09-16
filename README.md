@@ -24,7 +24,7 @@ If you are on **Windows** and are unable to run the tool using the aforementione
 
 #### Recommended Approach
 - Use `node` command prefix to run the app as follows:
-  - **node** ./siteit -h 
+  - **node** ./index.js -h 
 
 #### Not Recommended Approach
 - Using PowerShell in *Admin Mode*, run the following command to bypass PowerShell's Execution Policy
