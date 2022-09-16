@@ -29,7 +29,7 @@ const generateHTML = (...args) => {
 
         try{
             fs.writeFileSync(path.join(__dirname, `../dist/${fileNameWithHTMLExt.split('/')}`), markup)
-            console.log(success(`--- ${fileNameWithHTMLExt} generated in dist directory ---`))
+            console.log(success(`-- ${fileNameWithHTMLExt} generated in dist directory --`))
         }catch(e){
             console.log(fileNameWithHTMLExt)
             console.error(err(`-- ERROR writing to output file ${fileNameWithHTMLExt}`))
