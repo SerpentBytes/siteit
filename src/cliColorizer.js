@@ -21,6 +21,9 @@ module.exports.colorize = ((type, text) => {
         case 'success':
             coloredText = chalk.green(text)
             break
+        case 'secondary':
+            coloredText = chalk.yellow(text)
+            break
     }
 
     return coloredText;
