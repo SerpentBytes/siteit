@@ -13,4 +13,6 @@ const err = (value) => colorize('err', value)
 
 const success = (value) => colorize('success', value)
 
-module.exports = { cmd, flag, src, hdg, err, success }
+const secondary = (value) => colorize('secondary', value)
+
+module.exports = { cmd, flag, src, hdg, err, success, secondary }
