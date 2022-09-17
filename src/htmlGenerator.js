@@ -6,8 +6,7 @@ const { success, err } = require('./cliDisplay')
 
 const addPTag = (content) => {
     let returnStr = ""
-    returnStr += content.replace(/[\n]{2,}/g, "</p>\n\n<p>")
-    //console.log(returnStr.toString())
+    returnStr += content.replace(/[\r\n]{2,}/g, "</p>\n\n<p>")
     return returnStr
 
 }

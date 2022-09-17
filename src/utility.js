@@ -14,12 +14,6 @@ const { generateHTML } = require("./htmlGenerator");
 
 const handleImproperUsage = (flag) => {
   switch (flag) {
-    // case "-v":
-    //     console.log(`Invalid option\nusage: siteit --version\nusage: siteit -v`)
-    //     break
-    // case "-h":
-    //     console.log(`Invalid option\nusage: siteit --help\nusage: siteit -h`)
-    //     break
     case "-i":
       console.log(
         `-- Invalid flag --\n${cmd()} -i myfile.txt\nusage: ${cmd()} --input myfile.txt`
@@ -119,7 +113,6 @@ const processInput = (args) => {
         if (fs.statSync(src[i]).isFile()) {
           processFile(src[i]);
         } else if (fs.statSync(src[i]).isDirectory()) {
-          // processDir(src)
         }
       } catch (e) {
         console.error(
