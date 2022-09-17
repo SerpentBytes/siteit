@@ -15,6 +15,7 @@ Siteit allows users to convert text files into `.html` pages. Presently, Siteit 
 | :---: | :---: | :---: | :---: |
 | siteit | **-v** or **--version** | n/a | Displays tool name and version information|
 | siteit | **-h** or **--help** | n/a | Display usage manual|
+| siteit | **-s** or **--stylesheet** | n/a | **_Yet to be implemented_** |
 | siteit | **-i** or **--input** | _./filename.txt_ | Converts the content of the file supplied as additional argument into an `.html` document. To locate the generated file, `cd` into application's `dist` directory|
 | siteit | **-i** or **--input** | _./directory_| **_Yet to be implemented_** |
 
