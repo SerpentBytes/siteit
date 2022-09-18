@@ -8,6 +8,8 @@ const addPTag = (content) => {
   return returnStr;
 };
 const generateHTML = (...args) => {
+
+  let cssFileURL = args[2];
   let content = addPTag(args[1]);
   let fileNameWithHTMLExt = path.basename(args[0]).replace(".txt", ".html");
 

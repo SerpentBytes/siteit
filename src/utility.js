@@ -11,16 +11,17 @@ const {
   secondary,
 } = require("./cliDisplay");
 const { generateHTML } = require("./htmlGenerator");
+const { Console } = require("console");
 
-const handleImproperUsage = (flag) => {
-  switch (flag) {
+const handleImproperUsage = (option) => {
+  switch (option) {
     case "-i":
       console.log(
-        `-- Invalid flag --\n${cmd()} -i myfile.txt\nusage: ${cmd()} --input myfile.txt`
+        `-- ERROR --\n${cmd()} -i myfile.txt\nusage: ${cmd()} --input myfile.txt`
       );
       break;
     default:
-      console.log(`-- Invalid flag --\nusage: ${cmd()} [flag] [source]`);
+      console.log(`Usage: ${cmd()} ${flag('[flag]')} ${src('[source]')}`);
   }
 };
 const displayNameVersion = () => {
@@ -66,7 +67,7 @@ const distManager = () => {
   } catch (e) {
     if (e.code === "EEXIST") {
       console.log(
-        secondary('-- Output directory exists. Attempting to delete it --')
+        secondary("-- Output directory exists. Attempting to delete it --")
       );
       fs.rmSync(path.join(__dirname, "../dist"), {
         recursive: true,
@@ -82,6 +83,7 @@ const distManager = () => {
 };
 
 const processFile = (file) => {
+  distManager();
   let filePath = path.isAbsolute(file) ? file : path.resolve(file);
   try {
     let content = fs.readFileSync(filePath, { encoding: "utf8" });
@@ -96,29 +98,36 @@ const processFile = (file) => {
 };
 
 const processDir = (dir) => {
+  distManager();
   let dirPath = path.isAbsolute(dir) ? dir : path.resolve(dir);
   try {
     let files = fs.readdirSync(dirPath);
-    console.log('Feature not yet implemented');
-  } catch (e) {}
+
+    files.map((file) => {
+      let content = fs.readFileSync(`${dirPath}/${file}`, { encoding: "utf8" });
+      generateHTML(file, content);
+    })
+  } catch (e) {
+    console.log(err(`-- ERROR -- Invalid or unsupported files supplied --`))
+  }
 };
 const processInput = (args) => {
-  let src = args[1].splice(3);
+  let src = args[1].splice(3).toString().replace(",", " ");
   if (src.length === 0) {
     console.error(err("-- ERROR: No source supplied --"));
   } else {
-    distManager();
-    for (let i = 0; i < src.length; i++) {
-      try {
-        if (fs.statSync(src[i]).isFile()) {
-          processFile(src[i]);
-        } else if (fs.statSync(src[i]).isDirectory()) {
-        }
-      } catch (e) {
-        console.error(
-          `${err("-- ERROR Invalid or non-existing source supplied --")}`
-        );
+    try {
+      if (fs.statSync(src).isFile()) {
+        processFile(src);
+      } else if (fs.statSync(src).isDirectory()) {
+        processDir(src);
       }
+    } catch (e) {
+      console.error(
+        `${err("-- Invalid or multiple source supplied --")}`
+      );
+      console.log(e)
+      handleImproperUsage();
     }
   }
 };
@@ -133,7 +142,7 @@ const dispatch = (...args) => {
       break;
     case "-i":
       processInput(args);
-      break;
+      break;;
   }
 };
 
