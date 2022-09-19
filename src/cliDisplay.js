@@ -9,7 +9,7 @@ the command name for display purposes. If the executable command
 is updated in package.json files, the changes would automatically
 be reflected */
 const cmd = () => colorize("cmd", Object.keys(packageJson.bin));
-s
+
 /* This function calls colorize function styles
 the options for display purposes */
 const flag = (value) => colorize("flg", value);
