@@ -13,6 +13,6 @@ module.exports.main = (args) => {
   } else if (args[0] === "-i" || args[0] === "--input") {
     dispatch("-i", args);
   } else {
-    handleImproperUsage();
+    handleImproperUsage(); // print proper usage info
   }
 };
