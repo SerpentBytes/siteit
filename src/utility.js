@@ -10,8 +10,7 @@ const {
   success,
   secondary,
 } = require("./cliDisplay");
-const { generateHTML } = require("./htmlGenerator");
-const { Console } = require("console");
+const { generateHTML, generateIndexFile } = require("./htmlGenerator");
 
 const handleImproperUsage = (option) => {
   switch (option) {
@@ -89,6 +88,7 @@ const processFile = (file) => {
     let content = fs.readFileSync(filePath, { encoding: "utf8" });
     generateHTML(file, content);
   } catch (e) {
+    console.log(e)
     console.error(
       `${err(
         "-- ERROR: error reading file. Make sure file supplied exists --"
@@ -98,18 +98,22 @@ const processFile = (file) => {
 };
 
 const processDir = (dir) => {
+  let files = [];
   distManager();
   let dirPath = path.isAbsolute(dir) ? dir : path.resolve(dir);
   try {
-    let files = fs.readdirSync(dirPath);
+    files = fs.readdirSync(dirPath);
 
     files.map((file) => {
+      file.replace(' ', '\ ');
       let content = fs.readFileSync(`${dirPath}/${file}`, { encoding: "utf8" });
       generateHTML(file, content);
     })
+
   } catch (e) {
-    console.log(err(`-- ERROR -- Invalid or unsupported files supplied --`))
+    console.log(err(` ${e} -- ERROR -- Invalid or unsupported files supplied --`))
   }
+  generateIndexFile(files);
 };
 const processInput = (args) => {
   let src = args[1].splice(3).toString().replace(",", " ");
@@ -142,7 +146,7 @@ const dispatch = (...args) => {
       break;
     case "-i":
       processInput(args);
-      break;;
+      break;
   }
 };
 
