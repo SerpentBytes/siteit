@@ -28,23 +28,33 @@ ul {
 /* Extra small devices */
 @media only screen and (max-width: 600px) {
     p, a {
-        font-size: 0.5rem;
+        font-size: 1.5rem;
     }
     
     h1 {
-        font-size: 1.5rem;
+        font-size: 4rem;
+    }
+    body {
+        margin: 2rem 2rem;
+        background: #2B4570;
     }
 }
 /* Small devices */
 @media only screen and (min-width: 600px) {
     p, a {
-        font-size: 0.8rem;
+        font-size: 1.4rem;
     }
     
     h1 {
-        font-size: 2rem;
+        font-size: 3.5rem;
+    }
+
+    body {
+        margin: 2.5rem 2.5rem;
+        background: #2B4570;
     }
 }
+
 /* Large devices */
 @media only screen and (min-width: 992px) {
     p, a {
