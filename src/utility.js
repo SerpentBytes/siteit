@@ -1,3 +1,5 @@
+/* a set of custom utlity functions that help manage Siteit */
+
 const packageJson = require("../package.json");
 const fs = require("fs");
 const path = require("path");
