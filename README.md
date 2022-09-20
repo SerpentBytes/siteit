@@ -1,13 +1,18 @@
 # Siteit
 
 ## About
-Siteit allows users to convert text files into `.html` pages. Presently, Siteit only supports input files with `.txt` format. 
+Siteit allows users to convert text files into `.html` pages. Presently, Siteit only supports input files in `.txt` format. 
 
 ## Installation
 
 - Use the command `git clone` to `clone` the repo to your local machine
 - `cd` into the cloned directory, and run `npm install` to install all the dependencies
 - Run `npm link` to run Siteit locally on your machine
+
+## Features
+
+Siteit comes with its built-in stylesheet and supports various screen resolutions. When a folder with `.txt` files is supplied, 
+an `Index` file is also generated in the `dist` folder, linking to all generated files.  
   
 ## Usage
 
@@ -15,13 +20,12 @@ Siteit allows users to convert text files into `.html` pages. Presently, Siteit 
 | :---: | :---: | :---: | :---: |
 | siteit | **-v** or **--version** | n/a | Displays tool name and version information|
 | siteit | **-h** or **--help** | n/a | Display usage manual|
-| siteit | **-s** or **--stylesheet** | n/a | **_Yet to be implemented_** |
-| siteit | **-i** or **--input** | _./filename.txt_ | Converts the content of the file supplied as additional argument into an `.html` document. To locate the generated file, `cd` into application's `dist` directory|
-| siteit | **-i** or **--input** | _./directory_| **_Yet to be implemented_** |
+| siteit | **-i** or **--input** | _./filename.txt_ | Converts the file's content supplied as an additional argument into a `.html` document. To locate the generated file, `cd` into the application's `dist` directory|
+| siteit | **-i** or **--input** | _./directory_| Converts all the files within a directory supplied as additional argument into `.html` documents. To locate the generated files, `cd` into the application's `dist` directory and open `index.html`|
 
 Usage format: siteit **[option/flag]** _[additional arguments]_
 
-If you are on **Windows** and are unable to run the tool using the aforementioned _usage format_, follow these steps:
+If the user is on **Windows** and are unable to run the tool using the aforementioned _usage format_, follow these steps:
 
 #### Recommended Approach
 - Use `node` command prefix to run the app as follows:
@@ -30,4 +34,4 @@ If you are on **Windows** and are unable to run the tool using the aforementione
 #### Not Recommended Approach
 - Using PowerShell in *Admin Mode*, run the following command to bypass PowerShell's Execution Policy
   - For temporary bypass run: `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`
-  - For permanent bypass _(not recommended)_ run: `Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy Unrestricted`
+  - For permanent bypass _(not recommended)_ run: `Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy Unrestricted.`
