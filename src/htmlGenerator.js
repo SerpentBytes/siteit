@@ -9,13 +9,16 @@ const styles = `<link rel="stylesheet" type="text/css" href="../src/siteit.css" 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
 <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">`;
 
+const BOLD_REGEX_MD = /\*\*(.*?)\*\*/gm
+
 /*  generatePTags programmatically generates tags based on regular expression
 The function replaces all instances of carriage return and newline characters
 with appropriate paragraph tags and a blank line */
 const generatePTags = (content) => {
-  let returnStr = "";
-  returnStr += content.replace(/[\r\n]{2,}/g, "</p>\n\n<p>");
-  return returnStr;
+  let returnStr = content.replace(/[\r\n]{2,}/g, "</p>\n\n<p>")
+  returnStr = returnStr.replace(BOLD_REGEX_MD, '<strong>$1</strong>');
+
+  return `<p>${returnStr}</p>`;
 };
 
 /*  generateHTML uses template literals and string interpolation to write html 
@@ -24,6 +27,7 @@ generatePTags is invoked with file content */
 const generateHTML = (...args) => {
   // get just the name of the file and replace ".txt" with "html"
   let fileNameWithHTMLExt = path.basename(args[0]).replace(".txt", ".html");
+  fileNameWithHTMLExt = path.basename(args[0]).replace(".md", ".html");
   // passing file content to generatePTags without heading and extra spaces in the beginning
   let content = generatePTags(
     args[1].substring(fileNameWithHTMLExt.replace(".html", "").length + 2)
@@ -40,7 +44,7 @@ ${styles}
 </head>
 <body>
 <h1>${args[1].substring(0, args[1].indexOf("\n"))}</h1>
-<p>${content}</p>
+${content}
 </body>
 </html>`;
 
