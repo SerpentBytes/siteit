@@ -35,7 +35,8 @@ If the user is on **Windows** and are unable to run the tool using the aforement
 - Using PowerShell in *Admin Mode*, run the following command to bypass PowerShell's Execution Policy
   - For temporary bypass run: `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`
   - For permanent bypass _(not recommended)_ run: `Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy Unrestricted.`
-### Markdown files handling
+  
+## Markdown files handling
 Siteit also supports handling markdown files with following supported features: 
 
 | name        | syntax   | example              |
