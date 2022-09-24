@@ -17,6 +17,7 @@ The function replaces all instances of carriage return and newline characters
 with appropriate paragraph tags and a blank line */
 const generatePTags = (content) => {
   let returnStr = content.replace(/[\r\n]{2,}/g, "</p>\n\n<p>")
+  returnStr = returnStr.replace(/(\r\n|\n|\r)/gm, " ")
   returnStr = returnStr.replace(BOLD_REGEX_MD, '<strong>$1</strong>');
   returnStr = returnStr.replace(ITALIC_REGEX_MD, "<i>$1</i>");
 
@@ -32,8 +33,8 @@ const generateHTML = (...args) => {
   // get just the name of the file and replace ".txt" with "html"
   let fileNameWithHTMLExt = path.basename(args[0]).replace(inputFileExtension, ".html");
   // passing file content to generatePTags without heading and extra spaces in the beginning
-  let content = generatePTags(
-    args[1].substring(fileNameWithHTMLExt.replace(".html", "").length + 2)
+  let content = generatePTags(inputFileExtension === '.txt' ? 
+    args[1].substring(fileNameWithHTMLExt.replace(".html", "").length + 2) : args[1]
   );
 
   // a lot of string interpolation instances to generate the final markup
@@ -46,7 +47,7 @@ ${styles}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<h1>${args[1].substring(0, args[1].indexOf("\n"))}</h1>
+${inputFileExtension === '.txt' ? `<h1>${args[1].substring(0, args[1].indexOf("\n"))}</h1>` :''}
 ${content}
 </body>
 </html>`;
