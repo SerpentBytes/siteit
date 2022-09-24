@@ -9,7 +9,8 @@ const styles = `<link rel="stylesheet" type="text/css" href="../src/siteit.css" 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
 <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">`;
 
-const BOLD_REGEX_MD = /\*\*(.*?)\*\*/gm
+const BOLD_REGEX_MD = /\*\*(.+?)\*\*(?!\*)/g
+const ITALIC_REGEX_MD = /\*([^*><]+)\*/g
 
 /*  generatePTags programmatically generates tags based on regular expression
 The function replaces all instances of carriage return and newline characters
@@ -17,6 +18,7 @@ with appropriate paragraph tags and a blank line */
 const generatePTags = (content) => {
   let returnStr = content.replace(/[\r\n]{2,}/g, "</p>\n\n<p>")
   returnStr = returnStr.replace(BOLD_REGEX_MD, '<strong>$1</strong>');
+  returnStr = returnStr.replace(ITALIC_REGEX_MD, "<i>$1</i>");
 
   return `<p>${returnStr}</p>`;
 };
@@ -25,9 +27,10 @@ const generatePTags = (content) => {
 html markup to output file. Tags are programmatically generated when call to
 generatePTags is invoked with file content */
 const generateHTML = (...args) => {
+  const inputFileExtension = path.extname(args[0])
+
   // get just the name of the file and replace ".txt" with "html"
-  let fileNameWithHTMLExt = path.basename(args[0]).replace(".txt", ".html");
-  fileNameWithHTMLExt = path.basename(args[0]).replace(".md", ".html");
+  let fileNameWithHTMLExt = path.basename(args[0]).replace(inputFileExtension, ".html");
   // passing file content to generatePTags without heading and extra spaces in the beginning
   let content = generatePTags(
     args[1].substring(fileNameWithHTMLExt.replace(".html", "").length + 2)
@@ -73,9 +76,11 @@ prior to invoking generateHTML */
 const generateIndexFile = (files) => {
   let content = ``;
   files.map((file) => {
+    const fileExtension = path.extname(file)
+
     content += `<li><a href="../dist/${path
       .basename(file)
-      .replace(".txt", ".html")}"</a>${file.replace(".txt", "")}</li>`;
+      .replace(fileExtension, ".html")}"</a>${file.replace(fileExtension, "")}</li>`;
   });
 
   // markup for index.html
