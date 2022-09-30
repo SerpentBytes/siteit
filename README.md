@@ -43,3 +43,5 @@ Siteit also supports handling markdown files with following supported features:
 |-------------|------------|------------------------|
 | Bold text   | `**text**` | `**Some Bold Text**`   |
 | Italic text | `*text* `  | `*Some Italic Text*` |
+| Code	      | `` `text` `` | `` `Some code` ``   |
+| Horizontal rule | `---` | `---` |
