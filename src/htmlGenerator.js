@@ -18,6 +18,7 @@ The function replaces all instances of carriage return and newline characters
 with appropriate paragraph tags and a blank line */
 const generatePTags = (content) => {
   let returnStr = content.replace(/[\r\n]{2,}/g, "</p>\n\n<p>")
+  returnStr = returnStr.replace(/\-{3}/g, '<hr>')
   returnStr = returnStr.replace(/(\r\n|\n|\r)/gm, " ")
   returnStr = returnStr.replace(BOLD_REGEX_MD, '<strong>$1</strong>');
   returnStr = returnStr.replace(ITALIC_REGEX_MD, "<i>$1</i>");
