@@ -11,6 +11,7 @@ const styles = `<link rel="stylesheet" type="text/css" href="../src/siteit.css" 
 
 const BOLD_REGEX_MD = /\*\*(.+?)\*\*(?!\*)/g
 const ITALIC_REGEX_MD = /\*([^*><]+)\*/g
+const CODE_REGEX_MD = /\`(.+?)\`/gm
 
 /*  generatePTags programmatically generates tags based on regular expression
 The function replaces all instances of carriage return and newline characters
@@ -20,6 +21,7 @@ const generatePTags = (content) => {
   returnStr = returnStr.replace(/(\r\n|\n|\r)/gm, " ")
   returnStr = returnStr.replace(BOLD_REGEX_MD, '<strong>$1</strong>');
   returnStr = returnStr.replace(ITALIC_REGEX_MD, "<i>$1</i>");
+  returnStr = returnStr.replace(CODE_REGEX_MD, "<code>$1</code>")
 
   return `<p>${returnStr}</p>`;
 };
