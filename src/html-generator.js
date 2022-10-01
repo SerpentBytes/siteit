@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const pretty = require("pretty"); // makes html output to file "pretty"
-const { success, err } = require("./cliDisplay");
+const { success, err } = require("./cli-display");
 
 // styles constant holds reference to customs stylesheet and Google fonts
 const styles = `<link rel="stylesheet" type="text/css" href="../src/siteit.css" /> 

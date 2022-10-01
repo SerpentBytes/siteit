@@ -1,6 +1,6 @@
 /* a set of custom utlity functions that help manage Siteit */
 
-const packageJson = require("../package.json");
+const { name, version } = require("../package.json")
 const fs = require("fs");
 const path = require("path");
 const {
@@ -11,8 +11,8 @@ const {
   err,
   success,
   secondary,
-} = require("./cliDisplay");
-const { generateHTML, generateIndexFile } = require("./htmlGenerator");
+} = require("./cli-display");
+const { generateHTML, generateIndexFile } = require("./html-generator");
 
 /* This function is executed when user incorrectly makes use of the
 available options */
@@ -31,7 +31,7 @@ const handleImproperUsage = (option) => {
  runs the tool with -v or --version option */
 
 const displayNameVersion = () => {
-  console.log(`Name: ${packageJson.name}\nVersion: ${packageJson.version}`);
+  console.log(`Name: ${name}\nVersion: ${version}`);
 };
 
 /* This function is ultimately executed to display the usage guide for when -h or --help option is
