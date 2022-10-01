@@ -1,14 +1,14 @@
 /* This file contains helper functions print coloured output
 to the terminal  */
 
-const packageJson = require("../package.json");
-const { colorize } = require("./cliColorizer");
+const { bin } = require("../package.json");
+const { colorize } = require("./cli-colorizer");
 
 /* This function calls colorize function to provides styling for
 the command name for display purposes. If the executable command
 is updated in package.json files, the changes would automatically
 be reflected */
-const cmd = () => colorize("cmd", Object.keys(packageJson.bin));
+const cmd = () => colorize("cmd", Object.keys(bin));
 
 /* This function calls colorize function styles
 the options for display purposes */
