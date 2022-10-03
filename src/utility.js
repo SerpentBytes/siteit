@@ -1,6 +1,6 @@
 /* a set of custom utlity functions that help manage Siteit */
 
-const { name, version } = require("../package.json")
+const { name, version } = require("../package.json");
 const fs = require("fs");
 const path = require("path");
 const {
@@ -17,10 +17,16 @@ const { generateHTML, generateIndexFile } = require("./html-generator");
 /* This function is executed when user incorrectly makes use of the
 available options */
 const handleImproperUsage = (option) => {
+  console.log(option);
   switch (option) {
     case "-i":
       console.log(
         `-- ERROR --\n${cmd()} -i myfile.txt\nusage: ${cmd()} --input myfile.txt`
+      );
+      break;
+    case "-c":
+      console.log(
+        `-- ERROR --\n${cmd()} -c myfile.json\nusage: ${cmd()} --config myfile.json`
       );
       break;
     default:
@@ -62,6 +68,10 @@ Common SiteIt Flag Options
     )}    Accepts a source file or a directory containing 
                        files as input, and outputs an HTML file for 
                        each file supplied
+
+    ${flag(
+      "--config  | -c"
+    )}    Accepts the 'ssg-config.json' file to create a script for running multiple commands                       
 
 ----------------------------------------------------------------------
                         *** END OF MANUAL ***                   
@@ -148,10 +158,10 @@ input type, or prints an error message, if user supplied invalid parameter.
 */
 
 const processInput = (args) => {
-  // Remove "-i" option from the parameter and take care of spaces in source 
-  let src = args[1].splice(1).toString().replace(",", " "); 
+  // Remove "-i" option from the parameter and take care of spaces in source
+  let src = args[1].splice(1).toString().replace(",", " ");
 
-  // if user does not supply a file, print an error message 
+  // if user does not supply a file, print an error message
   if (src.length === 0) {
     console.error(err("-- ERROR: No source supplied --"));
   } else {
@@ -159,13 +169,38 @@ const processInput = (args) => {
       // check if the source is a file
       if (fs.statSync(src).isFile()) {
         processFile(src); // process the file
-      // check if source is a directory
+        // check if source is a directory
       } else if (fs.statSync(src).isDirectory()) {
         processDir(src); // process the directory
       }
     } catch (e) {
       console.error(`${err("-- Invalid or multiple source supplied --")}`);
-      handleImproperUsage(); // print proper usage message 
+      handleImproperUsage(); // print proper usage message
+    }
+  }
+};
+
+const processConfig = (args) => {
+  let src = args[1].splice(1).toString().replace(",", " ");
+  if (src.length === 0) {
+    console.error(err("-- ERROR: No source supplied --"));
+  } else {
+    try {
+      if (fs.statSync(src).isFile()) {
+        let filePath = path.isAbsolute(src) ? src : path.resolve(src);
+
+        let content = fs.readFileSync(filePath, { encoding: "utf8" });
+
+        let jsonParse = JSON.parse(content);
+
+        if (jsonParse.input) {
+          let text = ["-i", ["-i", jsonParse.input]];
+          processInput(text);
+        }
+      }
+    } catch (e) {
+      console.error(`${err("-- Invalid or multiple source supplied --")}`);
+      handleImproperUsage("-c");
     }
   }
 };
@@ -180,10 +215,13 @@ const dispatch = (...args) => {
       displayNameVersion(); // display name and version
       break;
     case "-h":
-      displayManual();  // display guide
+      displayManual(); // display guide
       break;
     case "-i":
       processInput(args); // process input
+      break;
+    case "-c":
+      processConfig(args);
       break;
   }
 };
