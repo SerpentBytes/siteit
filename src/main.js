@@ -12,7 +12,7 @@ module.exports.main = (args) => {
     dispatch("-h");
   } else if (args[0] === "-i" || args[0] === "--input") {
     dispatch("-i", args);
-  } else if (args[0] === "-c" || args[0] === "--input") {
+  } else if (args[0] === "-c" || args[0] === "--config") {
     dispatch("-c", args);
   } else {
     handleImproperUsage(); // print proper usage info
