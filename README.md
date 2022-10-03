@@ -23,7 +23,7 @@ an `Index` file is also generated in the `dist` folder, linking to all generated
 | siteit  |  **-h** or **--help**   |           n/a            |                                                                                        Display usage manual                                                                                         |
 | siteit  |  **-i** or **--input**  | \_./filename.(txt or md) |                 Converts the file's content supplied as an additional argument into a `.html` document. To locate the generated file, `cd` into the application's `dist` directory                  |
 | siteit  |  **-i** or **--input**  |      _./directory_       | Converts all the files within a directory supplied as additional argument into `.html` documents. To locate the generated files, `cd` into the application's `dist` directory and open `index.html` |
-| siteit  |  **-c** or **--input**  |    \_./filename.json     |                                                            Uses a .json file that contains a script to run multiple commands all at once                                                            |
+| siteit  | **-c** or **--config**  |    \_./filename.json     |                                                            Uses a .json file that contains a script to run multiple commands all at once                                                            |
 
 Usage format: siteit **[option/flag]** _[additional arguments]_
 
