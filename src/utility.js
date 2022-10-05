@@ -17,7 +17,6 @@ const { generateHTML, generateIndexFile } = require("./html-generator");
 /* This function is executed when user incorrectly makes use of the
 available options */
 const handleImproperUsage = (option) => {
-  console.log(option);
   switch (option) {
     case "-i":
       console.log(
@@ -193,13 +192,14 @@ const processConfig = (args) => {
 
         let jsonParse = JSON.parse(content);
 
+        console.log(secondary("-- Processing Script file: " + src));
+
         if (jsonParse.input) {
           let text = ["-i", ["-i", jsonParse.input]];
           processInput(text);
         }
       }
     } catch (e) {
-      console.error(`${err("-- Invalid or multiple source supplied --")}`);
       handleImproperUsage("-c");
     }
   }
