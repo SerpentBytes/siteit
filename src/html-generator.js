@@ -1,13 +1,18 @@
-const fs = require("fs");
-const path = require("path");
-const pretty = require("pretty"); // makes html output to file "pretty"
-const { success, err } = require("./cli-display");
+import fs from 'fs'
+import path from 'path'
+import { format } from 'prettier' // format output files using prettier
+import { fileURLToPath } from 'url'
+import { err, success } from './cli-display.js'
 
-// styles constant holds reference to customs stylesheet and Google fonts
+// class HTMLGenerator(){
+//   #
+
+// }
+// // styles constant holds reference to customs stylesheet and Google fonts
 const styles = `<link rel="stylesheet" type="text/css" href="../src/siteit.css" /> 
 <link rel="preconnect" href="https://fonts.googleapis.com"> 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-<link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">`;
+<link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">`
 
 const BOLD_REGEX_MD = /\*\*(.+?)\*\*(?!\*)/g
 const ITALIC_REGEX_MD = /\*([^*><]+)\*/g
@@ -17,105 +22,119 @@ const CODE_REGEX_MD = /\`(.+?)\`/gm
 The function replaces all instances of carriage return and newline characters
 with appropriate paragraph tags and a blank line */
 const generatePTags = (content) => {
-  let returnStr = content.replace(/[\r\n]{2,}/g, "</p>\n\n<p>")
-  returnStr = returnStr.replace(/\-{3}/g, '<hr>')
-  returnStr = returnStr.replace(/(\r\n|\n|\r)/gm, " ")
-  returnStr = returnStr.replace(BOLD_REGEX_MD, '<strong>$1</strong>');
-  returnStr = returnStr.replace(ITALIC_REGEX_MD, "<i>$1</i>");
-  returnStr = returnStr.replace(CODE_REGEX_MD, "<code>$1</code>")
+    let returnStr = content.replace(/[\r\n]{2,}/g, '</p>\n\n<p>')
+    returnStr = returnStr.replace(/\-{3}/g, '<hr>')
+    returnStr = returnStr.replace(/(\r\n|\n|\r)/gm, ' ')
+    returnStr = returnStr.replace(BOLD_REGEX_MD, '<strong>$1</strong>')
+    returnStr = returnStr.replace(ITALIC_REGEX_MD, '<i>$1</i>')
+    returnStr = returnStr.replace(CODE_REGEX_MD, '<code>$1</code>')
 
-  return `<p>${returnStr}</p>`;
-};
+    return `<p>${returnStr}</p>`
+}
+// returns file extention
+const getFileExt = (filePath) => path.extname(filePath)
 
+const getFile = () => fileURLToPath(import.meta.url)
+
+export const getDir = () => path.dirname(getFile())
+
+// replace existing extention with the new extension. If new extension is empty skip file extension.
+const parseFileName = (filePath, newExt = '') => {
+    return path
+        .basename(filePath)
+        .replace(getFileExt(filePath), newExt ? newExt : '')
+}
+
+const generateMarkup = (data, isIndex = false, fileExt = '') => {
+    const contentForIndex = `<ul>${data.mainContent}</ul>`
+    const headingForTxtFile =
+        fileExt === '.txt' ? `<h1>${data.mainHeading}</h1>` : ''
+
+    let markup = `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <meta charset="utf-8">
+  ${styles}
+  <title>${data.title ? data.title : 'Index'}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+  ${isIndex ? '<h1>Index</h1>' : headingForTxtFile}
+  ${isIndex ? contentForIndex : data.mainContent}
+  </body>
+  </html>`
+
+    return markup
+}
 /*  generateHTML uses template literals and string interpolation to write html 
 html markup to output file. Tags are programmatically generated when call to
 generatePTags is invoked with file content */
-const generateHTML = (...args) => {
-  const inputFileExtension = path.extname(args[0])
+export const generateHTML = (...args) => {
+    const inputFileExtension = getFileExt(args[0])
 
-  // get just the name of the file and replace ".txt" with "html"
-  let fileNameWithHTMLExt = path.basename(args[0]).replace(inputFileExtension, ".html");
-  // passing file content to generatePTags without heading and extra spaces in the beginning
-  let content = generatePTags(inputFileExtension === '.txt' ? 
-    args[1].substring(fileNameWithHTMLExt.replace(".html", "").length + 2) : args[1]
-  );
+    let fileNameWithHTMLExt = parseFileName(args[0], '.html')
 
-  // a lot of string interpolation instances to generate the final markup
-  let markup = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-${styles}
-<title>${fileNameWithHTMLExt.replace(".html", "")}</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-${inputFileExtension === '.txt' ? `<h1>${args[1].substring(0, args[1].indexOf("\n"))}</h1>` :''}
-${content}
-</body>
-</html>`;
+    let content = generatePTags(
+        inputFileExtension === '.txt'
+            ? args[1].substring(parseFileName(fileNameWithHTMLExt).length + 2)
+            : args[1]
+    )
 
-  try {
-    // create and write to file
-    fs.writeFileSync(
-      path.join(__dirname, `../dist/${fileNameWithHTMLExt}`),
-      pretty(markup, { ocd: true }) // fix the html output formatting using "pretty"
-    );
-    console.log(
-      // success message
-      success(`-- ${fileNameWithHTMLExt} generated in dist directory --`)
-    );
-  } catch (e) {
-    // error message
-    console.error(
-      err(`-- ERROR writing to output file ${fileNameWithHTMLExt}`)
-    );
-  }
-};
+    const markup = generateMarkup(
+        {
+            title: parseFileName(args[0]),
+            mainHeading: args[1].substring(0, args[1].indexOf('\n')),
+            mainContent: content,
+        },
+        false,
+        inputFileExtension
+    )
+    try {
+        // create and write to file
+        fs.writeFileSync(
+            path.join(getDir(), `../dist/${fileNameWithHTMLExt}`),
+            format(markup, { parser: 'html' }) // fix the html output formatting using "prettier"
+        )
+        console.log(
+            // success message
+            success(`-- ${fileNameWithHTMLExt} generated in dist directory --`)
+        )
+    } catch (e) {
+        console.error(
+            err(`-- ERROR writing to output file ${fileNameWithHTMLExt}`)
+        )
+    }
+}
 /*  generateIndexFile behaves similar to generateHTML except its generating
 markup for Index file which contains list items with working relative link
 to files generated by genereateHTML. This function should not be invoked
 prior to invoking generateHTML */
 
-const generateIndexFile = (files) => {
-  let content = ``;
-  files.map((file) => {
-    const fileExtension = path.extname(file)
+export const generateIndexFile = (files) => {
+    let content = ``
+    files.map((file) => {
+        content +=
+            `<li><a href=` +
+            `"../dist/${parseFileName(file, '.html')}">` +
+            `${parseFileName(file)}</a></li>`
+    })
 
-    content += `<li><a href="../dist/${path
-      .basename(file)
-      .replace(fileExtension, ".html")}"</a>${file.replace(fileExtension, "")}</li>`;
-  });
+    // markup for index.html
+    const markup = generateMarkup({ mainContent: content }, true)
 
-  // markup for index.html
-  let markup = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-${styles}
-<title>Index</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-<h1>Index</h1>
-<ul>
-${content}
-</ul>
-</body>
-</html>`;
+    // create and write to file:
+    try {
+        fs.writeFileSync(
+            path.join(getDir(), `../dist/index.html`),
+            format(markup, { parser: 'html' })
+        )
+        // success message
+        console.log(success(`-- index.html generated in dist directory --`))
+    } catch (e) {
+        console.log(e)
+        // error message
+        console.error(err(`-- ERROR generating index.html --`))
+    }
+}
 
-  // create and write to file:
-  try {
-    fs.writeFileSync(
-      path.join(__dirname, `../dist/index.html`),
-      pretty(markup, { ocd: true })
-    );
-    // success message
-    console.log(success(`-- index.html generated in dist directory --`));
-  } catch (e) {
-    // error message
-    console.error(err(`-- ERROR generating index.html --`));
-  }
-};
-
-module.exports = { generateHTML, generateIndexFile };
+export default { generateHTML, generateIndexFile }

@@ -5,14 +5,17 @@ html {
 
 body {
     margin: 5rem 5rem;
-    background: #2B4570;
+    background: #2b4570;
 }
 
-h1, p, a {
-    color: #C3B59F;
+h1,
+p,
+a {
+    color: #c3b59f;
 }
 
-p, a {
+p,
+a {
     font-size: 1.2rem;
 }
 
@@ -22,45 +25,47 @@ h1 {
 
 ul {
     list-style: none;
-  }
-
+}
 
 /* Extra small devices */
 @media only screen and (max-width: 600px) {
-    p, a {
+    p,
+    a {
         font-size: 1.5rem;
     }
-    
+
     h1 {
         font-size: 4rem;
     }
     body {
         margin: 2rem 2rem;
-        background: #2B4570;
+        background: #2b4570;
     }
 }
 /* Small devices */
 @media only screen and (min-width: 600px) {
-    p, a {
+    p,
+    a {
         font-size: 1.4rem;
     }
-    
+
     h1 {
         font-size: 3.5rem;
     }
 
     body {
         margin: 2.5rem 2.5rem;
-        background: #2B4570;
+        background: #2b4570;
     }
 }
 
 /* Large devices */
 @media only screen and (min-width: 992px) {
-    p, a {
+    p,
+    a {
         font-size: 1.2rem;
     }
-    
+
     h1 {
         font-size: 3rem;
     }

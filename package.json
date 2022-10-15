@@ -1,21 +1,33 @@
 {
-  "name": "siteit",
-  "version": "1.0.0",
-  "description": "CLI tool that converts user entered data via terminal into static website",
-  "main": "index.js",
-  "bin": {
-    "siteit": "./index.js"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "SSG"
-  ],
-  "author": "Taimoor Dawami",
-  "license": "MIT",
-  "dependencies": {
-    "chalk": "^4.1.2",
-    "pretty": "^2.0.0"
-  }
+    "name": "siteit",
+    "version": "1.0.0",
+    "description": "CLI tool that converts user entered data via terminal into static website",
+    "main": "./build/index.js",
+    "type": "module",
+    "bin": {
+        "siteit": "./build/index.js"
+    },
+    "scripts": {
+        "build": "babel ./src -d build && npx prettier --write .",
+        "start": "npm run build && node build/index.js -v",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "SSG"
+    ],
+    "author": "Taimoor Dawami",
+    "license": "MIT",
+    "dependencies": {
+        "chalk": "^4.1.2",
+        "pretty": "^2.0.0"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.19.3",
+        "@babel/core": "^7.19.3",
+        "@babel/node": "^7.19.1",
+        "@babel/plugin-syntax-import-assertions": "^7.18.6",
+        "@babel/preset-env": "^7.19.4",
+        "babel-plugin-import": "^1.13.5",
+        "prettier": "2.7.1"
+    }
 }

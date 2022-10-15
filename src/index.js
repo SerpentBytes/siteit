@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-const { main } = require('./src/main')
+import main from './main.js'
 // call main function to handle arguments
-main(process.argv);
-
+main(process.argv)
