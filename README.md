@@ -12,7 +12,8 @@ Siteit allows users to convert text files into `.html` pages. Presently, Siteit 
 
 - Use the command `git clone` to `clone` the repo to your local machine
 - `cd` into the cloned directory, and run `npm install` to install all the dependencies
-- Run `npm link` to run Siteit locally on your machine
+- Run `npm link` to make `siteit` command executable
+- Run `npm start`to build and start `siteit`
 
 ## Features
 
@@ -25,8 +26,9 @@ an `Index` file is also generated in the `dist` folder, linking to all generated
 | :---: | :---: | :---: | :---: |
 | siteit | **-v** or **--version** | n/a | Displays tool name and version information|
 | siteit | **-h** or **--help** | n/a | Display usage manual|
-| siteit | **-i** or **--input** | _./filename.(txt or md) | Converts the file's content supplied as an additional argument into a `.html` document. To locate the generated file, `cd` into the application's `dist` directory|
+| siteit | **-i** or **--input** | _./filename.(txt or md)_ | Converts the file's content supplied as an additional argument into a `.html` document. To locate the generated file, `cd` into the application's `dist` directory|
 | siteit | **-i** or **--input** | _./directory_| Converts all the files within a directory supplied as additional argument into `.html` documents. To locate the generated files, `cd` into the application's `dist` directory and open `index.html`|
+| siteit | **-c** or **--config** | _./filename.json_ | Uses the `json` format configuration file to generate `.html` documents
 
 Usage format: siteit **[option/flag]** _[additional arguments]_
 
