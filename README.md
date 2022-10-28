@@ -36,7 +36,7 @@ If the user is on **Windows** and are unable to run the tool using the aforement
 
 #### Recommended Approach
 - Use `node` command prefix to run the app as follows:
-  - **node** ./index.js -h 
+  - **node** ./build/index.js -v
 
 #### Not Recommended Approach
 - Using PowerShell in *Admin Mode*, run the following command to bypass PowerShell's Execution Policy
