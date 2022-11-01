@@ -3,32 +3,20 @@ import path from 'path'
 import { format } from 'prettier' // format output files using prettier
 import { fileURLToPath } from 'url'
 import { err, success } from './cli-display.js'
+import mdParser from './md-parser.js'
 
-// class HTMLGenerator(){
-//   #
-
-// }
 // // styles constant holds reference to customs stylesheet and Google fonts
 const styles = `<link rel="stylesheet" type="text/css" href="../src/siteit.css" /> 
 <link rel="preconnect" href="https://fonts.googleapis.com"> 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-<link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">`
-
-const BOLD_REGEX_MD = /\*\*(.+?)\*\*(?!\*)/g
-const ITALIC_REGEX_MD = /\*([^*><]+)\*/g
-const CODE_REGEX_MD = /\`(.+?)\`/gm
+<link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/dark.min.css">`
 
 /*  generatePTags programmatically generates tags based on regular expression
 The function replaces all instances of carriage return and newline characters
 with appropriate paragraph tags and a blank line */
 const generatePTags = (content) => {
     let returnStr = content.replace(/[\r\n]{2,}/g, '</p>\n\n<p>')
-    returnStr = returnStr.replace(/\-{3}/g, '<hr>')
-    returnStr = returnStr.replace(/(\r\n|\n|\r)/gm, ' ')
-    returnStr = returnStr.replace(BOLD_REGEX_MD, '<strong>$1</strong>')
-    returnStr = returnStr.replace(ITALIC_REGEX_MD, '<i>$1</i>')
-    returnStr = returnStr.replace(CODE_REGEX_MD, '<code>$1</code>')
-
     return `<p>${returnStr}</p>`
 }
 // returns file extention
@@ -49,20 +37,19 @@ const generateMarkup = (data, isIndex = false, fileExt = '') => {
     const contentForIndex = `<ul>${data.mainContent}</ul>`
     const headingForTxtFile =
         fileExt === '.txt' ? `<h1>${data.mainHeading}</h1>` : ''
-
     let markup = `<!DOCTYPE html>
-  <html lang="en">
-  <head>
-  <meta charset="utf-8">
-  ${styles}
-  <title>${data.title ? data.title : 'Index'}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
-  ${isIndex ? '<h1>Index</h1>' : headingForTxtFile}
-  ${isIndex ? contentForIndex : data.mainContent}
-  </body>
-  </html>`
+        <html lang="en">
+        <head>
+        <meta charset="utf-8">
+        ${styles}
+        <title>${data.title ? data.title : 'Index'}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        </head>
+        <body>
+        ${isIndex ? '<h1>Index</h1>' : headingForTxtFile}
+        ${isIndex ? contentForIndex : data.mainContent}
+        </body>
+        </html>`
 
     return markup
 }
@@ -70,15 +57,18 @@ const generateMarkup = (data, isIndex = false, fileExt = '') => {
 html markup to output file. Tags are programmatically generated when call to
 generatePTags is invoked with file content */
 export const generateHTML = (...args) => {
-    const inputFileExtension = getFileExt(args[0])
+    const fileExtension = getFileExt(args[0])
 
     let fileNameWithHTMLExt = parseFileName(args[0], '.html')
 
-    let content = generatePTags(
-        inputFileExtension === '.txt'
-            ? args[1].substring(parseFileName(fileNameWithHTMLExt).length + 2)
-            : args[1]
-    )
+    let content = ''
+    if (fileExtension === '.txt') {
+        content = generatePTags(
+            args[1].substring(parseFileName(fileNameWithHTMLExt).length + 2)
+        )
+    } else {
+        content = mdParser(args[1]) // call mdParser for markdown parsing.
+    }
 
     const markup = generateMarkup(
         {
@@ -87,13 +77,13 @@ export const generateHTML = (...args) => {
             mainContent: content,
         },
         false,
-        inputFileExtension
+        fileExtension
     )
     try {
         // create and write to file
         fs.writeFileSync(
             path.join(getDir(), `../dist/${fileNameWithHTMLExt}`),
-            format(markup, { parser: 'html' }) // fix the html output formatting using "prettier"
+            format(markup, { bracketSameLine: true, parser: 'html' }) // fix the html output formatting using "prettier"
         )
         console.log(
             // success message
@@ -126,7 +116,7 @@ export const generateIndexFile = (files) => {
     try {
         fs.writeFileSync(
             path.join(getDir(), `../dist/index.html`),
-            format(markup, { parser: 'html' })
+            format(markup, { bracketSameLine: true, parser: 'html' })
         )
         // success message
         console.log(success(`-- index.html generated in dist directory --`))
