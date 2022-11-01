@@ -43,7 +43,7 @@ If the user is on **Windows** and are unable to run the tool using the aforement
     -   For temporary bypass run: `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`
     -   For permanent bypass _(not recommended)_ run: `Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy Unrestricted.`
 
-## Markdown files handling (1.0.1)
+## Markdown files handling
 
 Siteit **fully** supports the following markdown features:
 
@@ -60,4 +60,4 @@ Siteit **fully** supports the following markdown features:
 | "                | `***`        | `<hr />`               |
 | Heading 1         | `# Heading` | `<h1>Heading</h1>`     |
 
-**As of v1.0.1 additional markdown features are supported with inconsistent CSS styling. Full support will be _officially_ introduced in subsequent versions**
+**As of recent commit additional markdown features are supported with inconsistent CSS styling. Full support will be _officially_ introduced in subsequent commits**
