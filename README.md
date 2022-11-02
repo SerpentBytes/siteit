@@ -15,6 +15,7 @@ Siteit allows users to convert text files into `.html` pages. Presently, Siteit 
 -   Use the command `git clone` to `clone` the repo to your local machine
 -   `cd` into the cloned directory, and run `npm install` to install all the dependencies
 -   Run `npm link` to run Siteit locally on your machine
+-   Run `npm start` to start Siteit
 
 ## Features
 
