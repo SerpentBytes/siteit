@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import main from './main.js'
+import main from './main.js';
 // call main function to handle arguments
-main(process.argv)
+main(process.argv);

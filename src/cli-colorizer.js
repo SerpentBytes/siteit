@@ -1,33 +1,35 @@
-import chalk from 'chalk' // module to change colour and formatting
+import chalk from 'chalk'; // module to change colour and formatting
 // of terminal output
 
 const colorize = (type, text) => {
-    let coloredText = ''
-    switch (type) {
-        case 'h': // heading
-            coloredText = chalk.inverse.bold(text)
-            break
-        case 'cmd': // command
-            coloredText = chalk.greenBright(text)
-            break
-        case 'flg': // flag / option
-            coloredText = chalk.blueBright(text)
-            break
-        case 'src': // source
-            coloredText = chalk.bold.yellowBright(text)
-            break
-        case 'err': // error
-            coloredText = chalk.redBright.bold.inverse(text)
-            break
-        case 'success': // success messages
-            coloredText = chalk.green(text)
-            break
-        case 'secondary': // message worth noting but not important
-            coloredText = chalk.yellow(text)
-            break
-    }
+  let coloredText = '';
+  switch (type) {
+    case 'h': // heading
+      coloredText = chalk.inverse.bold(text);
+      break;
+    case 'cmd': // command
+      coloredText = chalk.greenBright(text);
+      break;
+    case 'flg': // flag / option
+      coloredText = chalk.blueBright(text);
+      break;
+    case 'src': // source
+      coloredText = chalk.bold.yellowBright(text);
+      break;
+    case 'err': // error
+      coloredText = chalk.redBright.bold.inverse(text);
+      break;
+    case 'success': // success messages
+      coloredText = chalk.green(text);
+      break;
+    case 'secondary': // message worth noting but not important
+      coloredText = chalk.yellow(text);
+      break;
+    default:
+      coloredText = chalk.whiteBright(text);
+  }
 
-    return coloredText
-}
+  return coloredText;
+};
 
-export default colorize
+export default colorize;
