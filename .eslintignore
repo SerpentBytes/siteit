@@ -4,3 +4,6 @@ node_modules
 .*
 dist
 *.md
+webpack.config.js
+*.json
+*.css

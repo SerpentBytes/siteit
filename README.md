@@ -51,7 +51,7 @@ Siteit **fully** supports the following markdown features:
 | name            | syntax       | output             |
 | --------------- | ------------ | -------------------- |
 | Bold text       | `**Some bold Text**`   | `<strong>Some bold text<strong/>` |
-| "      | `__Some bold text__`   | `<strong>Some bold text<strong/>` |             
+| "      | `__Some bold text__`   | `<strong>Some bold text<strong/>` |
 | Italic text     | `*Some italic text*`    | `<em>Some italic text</em>` |
 | "    | `_Some italic text_`    | `<em>Some italic text</em>` |
 | Deleted text     | `~~Some deleted text~~`    | `<del>Some italic text</del>` |
@@ -62,3 +62,7 @@ Siteit **fully** supports the following markdown features:
 | Heading 1         | `# Heading` | `<h1>Heading</h1>`     |
 
 **As of recent commit additional markdown features are supported with inconsistent CSS styling. Full support will be _officially_ introduced in subsequent commits**
+
+---
+## Contributing
+If you are interested in contributing code to Siteit, see our contribution guidelines [here](./CONTRIBUTING.md).

@@ -1,34 +1,48 @@
 {
-    "name": "siteit",
-    "version": "1.0.0",
-    "description": "CLI tool that converts user entered data via terminal into static website",
-    "main": "./build/index.js",
-    "type": "module",
-    "bin": {
-        "siteit": "./build/index.js"
-    },
-    "scripts": {
-        "build": "babel ./src -d build && npx prettier --write .",
-        "start": "npm run build && node build/index.js -v",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [
-        "SSG"
-    ],
-    "author": "Taimoor Dawami",
-    "license": "MIT",
-    "dependencies": {
-        "chalk": "^4.1.2",
-        "highlight.js": "^11.6.0",
-        "remarkable": "^2.0.1"
-    },
-    "devDependencies": {
-        "@babel/cli": "^7.19.3",
-        "@babel/core": "^7.19.3",
-        "@babel/node": "^7.19.1",
-        "@babel/plugin-syntax-import-assertions": "^7.18.6",
-        "@babel/preset-env": "^7.19.4",
-        "babel-plugin-import": "^1.13.5",
-        "prettier": "2.7.1"
-    }
+  "name": "siteit",
+  "version": "1.0.0",
+  "description": "CLI tool that converts user entered data via terminal into static website",
+  "main": "./build/index.js",
+  "type": "module",
+  "bin": {
+    "siteit": "./build/index.js"
+  },
+  "scripts": {
+    "lint": "npx eslint .",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier:check": "npx prettier --check .",
+    "prettier:format": "npx prettier --write .",
+    "pre-commit": "npx lint-staged && pretty-quick --staged",
+    "build": "babel ./src -d build",
+    "start": "npm run ./build && node ./build/index.js -v",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "SSG"
+  ],
+  "author": "Taimoor Dawami",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/eslint-parser": "^7.19.1",
+    "chalk": "^4.1.2",
+    "highlight.js": "^11.6.0",
+    "remarkable": "^2.0.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.3",
+    "@babel/node": "^7.19.1",
+    "@babel/plugin-syntax-import-assertions": "^7.18.6",
+    "@babel/preset-env": "^7.19.4",
+    "babel-plugin-import": "^1.13.5",
+    "eslint": "^8.27.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "pretty-quick": "^3.1.3"
+  }
 }

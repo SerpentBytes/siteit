@@ -1,72 +1,72 @@
 html {
-    font-size: 100%;
-    font-family: 'Questrial', sans-serif;
+  font-size: 100%;
+  font-family: 'Questrial', sans-serif;
 }
 
 body {
-    margin: 5rem 5rem;
-    background: #2b4570;
+  margin: 5rem 5rem;
+  background: #2b4570;
 }
 
 h1,
 p,
 a {
-    color: #c3b59f;
+  color: #c3b59f;
 }
 
 p,
 a {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 h1 {
-    font-size: 3rem;
+  font-size: 3rem;
 }
 
 ul {
-    list-style: none;
+  list-style: none;
 }
 
 /* Extra small devices */
 @media only screen and (max-width: 600px) {
-    p,
-    a {
-        font-size: 1.5rem;
-    }
+  p,
+  a {
+    font-size: 1.5rem;
+  }
 
-    h1 {
-        font-size: 4rem;
-    }
-    body {
-        margin: 2rem 2rem;
-        background: #2b4570;
-    }
+  h1 {
+    font-size: 4rem;
+  }
+  body {
+    margin: 2rem 2rem;
+    background: #2b4570;
+  }
 }
 /* Small devices */
 @media only screen and (min-width: 600px) {
-    p,
-    a {
-        font-size: 1.4rem;
-    }
+  p,
+  a {
+    font-size: 1.4rem;
+  }
 
-    h1 {
-        font-size: 3.5rem;
-    }
+  h1 {
+    font-size: 3.5rem;
+  }
 
-    body {
-        margin: 2.5rem 2.5rem;
-        background: #2b4570;
-    }
+  body {
+    margin: 2.5rem 2.5rem;
+    background: #2b4570;
+  }
 }
 
 /* Large devices */
 @media only screen and (min-width: 992px) {
-    p,
-    a {
-        font-size: 1.2rem;
-    }
+  p,
+  a {
+    font-size: 1.2rem;
+  }
 
-    h1 {
-        font-size: 3rem;
-    }
+  h1 {
+    font-size: 3rem;
+  }
 }
