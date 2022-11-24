@@ -5,6 +5,9 @@ the command-line. The "main" function is responsible for calling
 the "dispatch" function if user provides a valid option */
 
 const main = (args) => {
+  if (!args) {
+    return false;
+  }
   const validValues = args.slice(2); // get rid of first 2 arguments
   if (
     validValues.length === 1 &&
@@ -20,9 +23,8 @@ const main = (args) => {
     dispatch('-i', validValues);
   } else if (validValues[0] === '-c' || validValues[0] === '--config') {
     dispatch('-c', validValues);
-  } else {
-    handleImproperUsage(); // print proper usage info
   }
+  return handleImproperUsage();
 };
 
 export default main;

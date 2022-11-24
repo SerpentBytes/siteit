@@ -119,7 +119,6 @@ export const generateIndexFile = (files) => {
     // success message
     console.log(success('-- index.html generated in dist directory --'));
   } catch (e) {
-    console.log(e);
     // error message
     console.error(err(`-- ERROR generating index.html --`));
   }
