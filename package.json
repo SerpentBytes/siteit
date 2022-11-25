@@ -15,7 +15,7 @@
     "pre-commit": "npx lint-staged && pretty-quick --staged",
     "build": "babel ./src -d build",
     "start": "npm run ./build && node ./build/index.js -v",
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "keywords": [
     "SSG"
@@ -37,7 +37,6 @@
     "@babel/preset-env": "^7.19.4",
     "@jest/globals": "^29.3.1",
     "babel-plugin-import": "^1.13.5",
-    "cross-env": "^7.0.3",
     "eslint": "^8.27.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
