@@ -28,7 +28,7 @@ Make sure you have the following technologies installed on your machine:
 - [npm](https://docs.npmjs.com/about-npm#use-npm-to---) current release.
 
 An easy to way to test if you already have the above technologies installed is by running the following commands:
-```node
+```bash
 node -v
 npm -v
 ```
@@ -55,7 +55,7 @@ This script builds the source code using `babel`, and starts an instance of `sit
 - Make changes only in the `src` folder
 
 To run Siteit locally with changes you introduced to the source code, you need to run the following script:
-```node
+```bash
 npm run build
 ```
 Running the above script will compile the code using `babel` and output in the `build` folder.
@@ -81,7 +81,7 @@ Running the above script will run tests to check for problems in the code using 
 
 To automatically apply the changes detected by using `prettier` and `ESLint`, use the following scripts:
 
-```node
+```bash
 npm run prettier:format
 npm run lint:fix
 ```
@@ -94,8 +94,10 @@ If you push changes without running checks for formatting and problems in code, 
 #### Running Tests
 Siteit currently supports initial testing for functionality using `jest`
 
-To  run tests your `jest`, execute the following `script`:
- `npm test`
+To  run tests using `jest`, execute the following `script`:
+ ```bash
+ npm test
+ ```
 
 ### Reporting Bugs
 _WIP_
