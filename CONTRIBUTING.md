@@ -98,6 +98,7 @@ To  run tests using `jest`, execute the following `script`:
  ```bash
  npm test
  ```
+
 ### Reporting Bugs
 _WIP_
 ### Suggesting Enhancements
