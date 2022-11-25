@@ -94,7 +94,7 @@ If you push changes without running checks for formatting and problems in code, 
 #### Running Tests
 Siteit currently supports initial testing for functionality using `jest`
 
-To  run tests your `jest`, execute the following `script`:
+To  run tests using `jest`, execute the following `script`:
  `npm test`
 
 ### Reporting Bugs
