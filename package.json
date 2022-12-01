@@ -1,6 +1,6 @@
 {
   "name": "siteit",
-  "version": "1.0.0",
+  "version": "0.9.0",
   "description": "CLI tool that converts user entered data via terminal into static website",
   "main": "./build/index.js",
   "type": "module",
@@ -15,7 +15,8 @@
     "pre-commit": "npx lint-staged && pretty-quick --staged",
     "build": "babel ./src -d build",
     "start": "npm run ./build && node ./build/index.js -v",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "prepare": "husky install"
   },
   "keywords": [
     "SSG"

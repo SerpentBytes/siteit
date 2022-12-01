@@ -23,8 +23,9 @@ const main = (args) => {
     dispatch('-i', validValues);
   } else if (validValues[0] === '-c' || validValues[0] === '--config') {
     dispatch('-c', validValues);
+  } else {
+    return handleImproperUsage();
   }
-  return handleImproperUsage();
 };
 
 export default main;

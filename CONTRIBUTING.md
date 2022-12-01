@@ -10,9 +10,7 @@ Thank you for showing interest in contributing to Siteit.
 - [Code Contribution](#code-contribution)
 - [Reporting Bugs](#reporting-bugs)
 - [Suggesting Enhancements](#suggesting-enhancements)
-- [Improving the Documentation](#improving-the-documentation)
-- [Styleguides](#styleguides)
-- [Commit Messages](#commit-messages)
+
 
 ---
 
@@ -21,7 +19,7 @@ This section is to help developers set up Siteit locally on their machines for d
 
 #### Getting Started
 
-#### Pre-requisites
+##### Pre-requisites
 
 Make sure you have the following technologies installed on your machine:
 - [Node](https://nodejs.org/en/download/)current LTS version.
@@ -92,20 +90,14 @@ npm run lint:fix
 If you push changes without running checks for formatting and problems in code, the `husky` `pre-commit` `hook` will automatically apply the changes before pushing your changes remotely to GitHub.
 
 #### Running Tests
-Siteit currently supports initial testing for functionality using `jest`
+Siteit currently supports initial testing for functionality using the Jest framework.
 
-To  run tests using `jest`, execute the following `script`:
+To run tests using `jest`, execute the following `script`:
  ```bash
  npm test
  ```
 
 ### Reporting Bugs
-_WIP_
+To report a bug file [create a new issue](https://github.com/SerpentBytes/siteit/issues/new). Please go through [open issues](https://github.com/SerpentBytes/siteit/issues?q=is%3Aopen+is%3Aissue) to see if the bug still needs to be reported.
 ### Suggesting Enhancements
-_WIP_
-### Improving the Documentation
-_WIP_
-### Styleguides
-_WIP_
-### Commit Messages
-_WIP_
+To suggest an enhancement [create a new issue](https://github.com/SerpentBytes/siteit/issues/new). Make sure to include why the enhancement you suggest could improve the codebase.

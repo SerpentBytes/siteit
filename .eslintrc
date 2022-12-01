@@ -32,6 +32,7 @@
     "no-var": "error",
     "prefer-arrow-callback": "warn",
     "require-await": "warn",
+    "consistent-return": "warn",
     "no-trailing-spaces": [
       "error",
       { "skipBlankLines": true, "ignoreComments": true }
