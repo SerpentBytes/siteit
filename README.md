@@ -1,5 +1,9 @@
 # Siteit
 
+![siteit logo](https://user-images.githubusercontent.com/50856799/205128398-f6c5cfa9-9b1a-4e02-b4df-f13b25e54754.svg)
+
+
+
 [![GitHub contributors](https://badgen.net/github/contributors/SerpentBytes/siteit)](https://GitHub.com/SerpentBytes/siteit/graphs/contributors/)
 [![GitHub issues](https://badgen.net/github/issues/SerpentBytes/siteit/)](https://GitHub.com/SerpentBytes/siteit/issues/)
 [![GitHub open-pull-requests](https://badgen.net/github/open-prs/SerpentBytes/siteit)](https://github.com/SerpentBytes/siteit/pulls?q=is%3Aopen)
