@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/50856799/205128398-f6c5cfa9-9b1a-4e02-b4df-f13b25e54754.svg" width="350px"/>
+  <img src="https://user-images.githubusercontent.com/50856799/205161206-bd467115-734a-43b8-887c-fc85f8cdd297.gif" width="250px"/>
 </p>
 
 # Siteit
