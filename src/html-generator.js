@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { format } from 'prettier'; // format output files using prettier
+import pretty from 'pretty'; // format output files using prettier
 import { fileURLToPath } from 'url';
 import { err, success } from './cli-display.js';
 // eslint-disable-next-line import/no-named-as-default
@@ -81,7 +81,7 @@ export const generateHTML = (...args) => {
     // create and write to file
     fs.writeFileSync(
       path.join(getDir(), `../dist/${fileNameWithHTMLExt}`),
-      format(markup, { bracketSameLine: true, parser: 'html' }) // fix the html output formatting using "prettier"
+      pretty(markup, { ocd: true }) // fix the html output formatting using "pretty"
     );
     console.log(
       // success message
@@ -114,7 +114,7 @@ export const generateIndexFile = (files) => {
   try {
     fs.writeFileSync(
       path.join(getDir(), '../dist/index.html'),
-      format(markup, { bracketSameLine: true, parser: 'html' })
+      pretty(markup, { ocd: true })
     );
     // success message
     console.log(success('-- index.html generated in dist directory --'));
