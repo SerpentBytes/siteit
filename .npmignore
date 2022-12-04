@@ -1,5 +1,4 @@
 # Rules from: .gitignore
-node_modules
 dist
 logs
 *.logx
