@@ -1,6 +1,6 @@
 {
   "name": "siteit",
-  "version": "0.9.9",
+  "version": "1.0.0",
   "description": "CLI tool that converts user entered data via terminal into static website",
   "main": "./build/index.js",
   "type": "module",
