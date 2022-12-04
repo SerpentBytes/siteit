@@ -16,10 +16,9 @@ Siteit allows users to convert text files into `.html` pages. Presently, Siteit 
 
 ## Installation
 
--   Use the command `git clone` to `clone` the repo to your local machine
--   `cd` into the cloned directory, and run `npm install` to install all the dependencies
--   Run `npm link` to run Siteit locally on your machine
--   Run `npm start` to start Siteit
+```bash
+npm install -g siteit
+```
 
 ## Features
 
@@ -35,18 +34,6 @@ an `Index` file is also generated in the `dist` folder, linking to all generated
 | siteit  |  **-i** or **--input**  |      _./directory_       | Converts all the files within a directory supplied as additional argument into `.html` documents. To locate the generated files, `cd` into the application's `dist` directory and open `index.html` |
 
 Usage format: siteit **[option/flag]** _[additional arguments]_
-
-If the user is on **Windows** and are unable to run the tool using the aforementioned _usage format_, follow these steps:
-
-#### Recommended Approach
-- Use `node` command prefix to run the app as follows:
-  - **node** ./build/index.js -v
-
-#### Not Recommended Approach
-
--   Using PowerShell in _Admin Mode_, run the following command to bypass PowerShell's Execution Policy
-    -   For temporary bypass run: `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`
-    -   For permanent bypass _(not recommended)_ run: `Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy Unrestricted.`
 
 ## Markdown files handling
 
