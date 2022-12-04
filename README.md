@@ -30,7 +30,7 @@ an `Index` file is also generated in the `dist` folder, linking to all generated
 | :-----: | :---------------------: | :----------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | siteit  | **-v** or **--version** |           n/a            |                                                                             Displays tool name and version information                                                                              |
 | siteit  |  **-h** or **--help**   |           n/a            |                                                                                        Display usage manual                                                                                         |
-| siteit  |  **-i** or **--input**  | \_./filename.(txt or md) |                 Converts the file's content supplied as an additional argument into a `.html` document. To locate the generated file, `cd` into the application's `dist` directory                  |
+| siteit  |  **-i** or **--input**  | _./filename.(txt or md)_ |                 Converts the file's content supplied as an additional argument into a `.html` document. To locate the generated file, `cd` into the application's `dist` directory                  |
 | siteit  |  **-i** or **--input**  |      _./directory_       | Converts all the files within a directory supplied as additional argument into `.html` documents. To locate the generated files, `cd` into the application's `dist` directory and open `index.html` |
 
 Usage format: siteit **[option/flag]** _[additional arguments]_
@@ -51,8 +51,6 @@ Siteit **fully** supports the following markdown features:
 | Horizontal rule | `___`        | `<hr />`                |
 | "                | `***`        | `<hr />`               |
 | Heading 1         | `# Heading` | `<h1>Heading</h1>`     |
-
-**As of recent commit additional markdown features are supported with inconsistent CSS styling. Full support will be _officially_ introduced in subsequent commits**
 
 ---
 ## Contributing

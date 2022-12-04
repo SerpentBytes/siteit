@@ -19,7 +19,15 @@
     "prepare": "husky install"
   },
   "keywords": [
-    "SSG"
+    "SSG",
+    "generator",
+    "site",
+    "staticsite",
+    "mdtohtml",
+    "md2html",
+    "markdownToHtml",
+    "file2html",
+    "convert"
   ],
   "author": "Taimoor Dawami",
   "license": "MIT",
