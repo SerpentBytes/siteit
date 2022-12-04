@@ -58,7 +58,7 @@ Common SiteIt Flag Options
 
     ${flag(
       '--config  | -c'
-    )}    Accepts the 'ssg-config.json' file to create a script for running multiple commands
+    )}    Accepts a json config file containing option/flags
 
 ----------------------------------------------------------------------
                         *** END OF MANUAL ***
