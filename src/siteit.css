@@ -9,6 +9,9 @@ body {
 h1 {
   text-align: center;
 }
+.index-header {
+  text-align: left;
+}
 
 h1,
 p,

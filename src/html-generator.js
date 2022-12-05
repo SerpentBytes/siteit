@@ -44,7 +44,7 @@ const generateMarkup = (data, isIndex = false, fileExt = '') => {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         </head>
         <body>
-        ${isIndex ? '<h1>Index</h1>' : headingForTxtFile}
+        ${isIndex ? '<h1 class="index-header">Index</h1>' : headingForTxtFile}
         ${isIndex ? contentForIndex : data.mainContent}
         </body>
         </html>`;
