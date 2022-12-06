@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { generateHTML, generateIndexFile, getDir } from './html-generator.js';
+import { generateHTML, generateIndexFile } from './html-generator.js';
 import { err, success, secondary } from './cli-display.js';
 import { handleImproperUsage } from './utility.js';
 
@@ -13,7 +13,7 @@ class FileParser {
   distManager() {
     try {
       console.log(secondary('-- Attempting to create output directory --'));
-      fs.mkdirSync(path.join(getDir(), '../dist'));
+      fs.mkdirSync('./dist');
     } catch (e) {
       // checking if directory already exists
       if (e.code === 'EEXIST') {
@@ -21,19 +21,17 @@ class FileParser {
           secondary('-- Output directory exists. Attempting to delete it --')
         );
         // delete the existing directory
-        fs.rmSync(path.join(getDir(), '../dist'), {
+        fs.rmSync('./dist', {
           recursive: true,
           force: true,
         });
         console.log(success('-- Pre-existing output directory deleted --'));
         // create a new dist directory
-        fs.mkdirSync(path.join(getDir(), '../dist'));
+        fs.mkdirSync(path.join('./dist'));
       }
     }
     console.log(
-      success(
-        `-- DONE creating output directory: ${path.resolve('../dist')} --`
-      )
+      success(`-- DONE creating output directory: ${path.resolve('./dist')} --`)
     );
   }
 
