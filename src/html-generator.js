@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import pretty from 'pretty'; // format output files using prettier
-import { fileURLToPath } from 'url';
 import { err, success } from './cli-display.js';
 // eslint-disable-next-line import/no-named-as-default
 import mdParser from './md-parser.js';
@@ -22,10 +21,6 @@ const generatePTags = (content) => {
 };
 // returns file extention
 const getFileExt = (filePath) => path.extname(filePath);
-
-const getFile = () => fileURLToPath(import.meta.url);
-
-export const getDir = () => path.dirname(getFile());
 
 // replace existing extention with the new extension. If new extension is empty skip file extension.
 const parseFileName = (filePath, newExt = '') =>
@@ -80,7 +75,7 @@ export const generateHTML = (...args) => {
   try {
     // create and write to file
     fs.writeFileSync(
-      path.join(getDir(), `../dist/${fileNameWithHTMLExt}`),
+      `./dist/${fileNameWithHTMLExt}`,
       pretty(markup, { ocd: true }) // fix the html output formatting using "pretty"
     );
     console.log(
@@ -89,7 +84,7 @@ export const generateHTML = (...args) => {
     );
   } catch (e) {
     console.error(
-      err(`-- ERROR writing to output file ${fileNameWithHTMLExt}`)
+      err(`-- ERROR writing to output file ${fileNameWithHTMLExt} --`)
     );
   }
 };
@@ -103,7 +98,7 @@ export const generateIndexFile = (files) => {
   files.map((file) => {
     content +=
       '<li><a href=' +
-      `"../dist/${parseFileName(file, '.html')}">` +
+      `"./${parseFileName(file, '.html')}">` +
       `${parseFileName(file)}</a></li>`;
   });
 
@@ -112,10 +107,7 @@ export const generateIndexFile = (files) => {
 
   // create and write to file:
   try {
-    fs.writeFileSync(
-      path.join(getDir(), '../dist/index.html'),
-      pretty(markup, { ocd: true })
-    );
+    fs.writeFileSync('./dist/index.html', pretty(markup, { ocd: true }));
     // success message
     console.log(success('-- index.html generated in dist directory --'));
   } catch (e) {
