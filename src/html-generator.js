@@ -6,9 +6,7 @@ import { err, success } from './cli-display.js';
 import mdParser from './md-parser.js';
 
 // // styles constant holds reference to customs stylesheet and Google fonts
-const styles = `<link rel="stylesheet" type="text/css" href="${path.resolve(
-  '../src/siteit.css'
-)}" />
+const styles = `<link rel="stylesheet" href="https://cdn.statically.io/gh/SerpentBytes/siteit/master/src/siteit.min.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
