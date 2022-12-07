@@ -35,7 +35,7 @@ If you have `node` and `npm` installed, the above commands will print the instal
 _If you get an error message, please install the missing technology._
 
 **Note**:
-We recommend installing the [current LTS version of [`node`](https://nodejs.org/en/download/) for your operating system to test and develop Siteit without complications.
+We recommend installing the current LTS version of [`node`](https://nodejs.org/en/download/) for your operating system to test and develop Siteit without complications.
 
 #### Getting Started
 - [`fork`](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the Siteit on Github.
@@ -61,7 +61,7 @@ Running the above script will compile the code using `babel` and output in the `
 _Modify the files in `src` folder, as files within the `build` folder are overwritten when the source code is compiled using `babel`._
 
 ##### Starting the Project
- Assuming you ran the `npm link` previously as instructed, run `npm run start` to start Siteit locally. Alternatively, you can start the project by running `node ./build/index.js` from the command line.
+ Assuming you ran the `npm link` previously as instructed, run `npm start` to start Siteit locally. Alternatively, you can start the project by running `node ./build/index.js` from the command line.
 
 ##### Statically Generated Content
 If you ran the tool using options that accepts a `source` as an `argument`, the rendered HTML will can be found in the `dist` under `root`.
@@ -98,6 +98,7 @@ To run tests using `jest`, execute the following `script`:
  ```
 
 ### Reporting Bugs
-To report a bug file [create a new issue](https://github.com/SerpentBytes/siteit/issues/new). Please go through [open issues](https://github.com/SerpentBytes/siteit/issues?q=is%3Aopen+is%3Aissue) to see if the bug still needs to be reported.
+To report a bug file 
+create a new issue](https://github.com/SerpentBytes/siteit/issues/new). Please go through [open issues](https://github.com/SerpentBytes/siteit/issues?q=is%3Aopen+is%3Aissue) to see if the bug still needs to be reported.
 ### Suggesting Enhancements
 To suggest an enhancement [create a new issue](https://github.com/SerpentBytes/siteit/issues/new). Make sure to include why the enhancement you suggest could improve the codebase.
