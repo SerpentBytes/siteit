@@ -22,7 +22,7 @@ This section is to help developers set up Siteit locally on their machines for d
 ##### Pre-requisites
 
 Make sure you have the following technologies installed on your machine:
-- [Node](https://nodejs.org/en/download/)current LTS version.
+- [Node](https://nodejs.org/en/download/) current LTS version.
 - [npm](https://docs.npmjs.com/about-npm#use-npm-to---) current release.
 
 An easy to way to test if you already have the above technologies installed is by running the following commands:
@@ -99,6 +99,6 @@ To run tests using `jest`, execute the following `script`:
 
 ### Reporting Bugs
 To report a bug file 
-create a new issue](https://github.com/SerpentBytes/siteit/issues/new). Please go through [open issues](https://github.com/SerpentBytes/siteit/issues?q=is%3Aopen+is%3Aissue) to see if the bug still needs to be reported.
+create a new [issue](https://github.com/SerpentBytes/siteit/issues/new). Please go through [open issues](https://github.com/SerpentBytes/siteit/issues?q=is%3Aopen+is%3Aissue) to see if the bug still needs to be reported.
 ### Suggesting Enhancements
 To suggest an enhancement [create a new issue](https://github.com/SerpentBytes/siteit/issues/new). Make sure to include why the enhancement you suggest could improve the codebase.
